@@ -42,7 +42,9 @@ public class OrderCalculator {
     public static double totalDelivery(List<LaundryOrder> orders) {
         double total = 0.0;
         for (LaundryOrder order : orders) {
-            total += ((Deliverable) order).deliveryFee();
+            if (order instanceof Deliverable){
+                total += ((Deliverable) order).deliveryFee();
+            }
         }
         return total;
     }
@@ -58,7 +60,7 @@ public class OrderCalculator {
     public static void validate(LaundryOrder order) throws InvalidWeightException {
         double weightKg = order.getWeightKg();
         if (weightKg <= MIN_WEIGHT_KG || weightKg >= MAX_WEIGHT_KG){
-            System.out.println("Invalid weight: " + weightKg);
+            throw new InvalidWeightException("Invalid weight: " + weightKg);
         }
     }
 
