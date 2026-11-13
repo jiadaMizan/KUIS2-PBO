@@ -18,16 +18,21 @@ public class Customer {
      * @param customerId kode pelanggan
      * @param name nama pelanggan
      */
+
+    String customerId;
+    String name;
+
     public Customer(String customerId, String name) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        this.name = name;
+        this.customerId = customerId;
     }
 
     public String getCustomerId() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return customerId;
     }
 
     public String getName() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return name;
     }
 
     /**
@@ -37,6 +42,9 @@ public class Customer {
      * @param name nama baru
      */
     public void setName(String name) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (name == null || name.trim().isEmpty()) {
+            return;
+        }
+        this.name = name;
     }
 }
