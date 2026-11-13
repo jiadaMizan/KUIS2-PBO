@@ -11,7 +11,6 @@ package id.ac.polinema.quiz2;
  * Semua field harus private.
  */
 public class Customer {
-
     /**
      * Menyimpan kedua parameter ke field.
      *
@@ -19,8 +18,8 @@ public class Customer {
      * @param name nama pelanggan
      */
 
-    String customerId;
-    String name;
+    private String customerId;
+    private String name;
 
     public Customer(String customerId, String name) {
         this.name = name;
