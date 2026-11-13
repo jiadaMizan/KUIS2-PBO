@@ -80,6 +80,8 @@ public class LaundryDesk {
      */
     public void checkout(String orderId) {
         LaundryOrder order = findById(orderId);
-        printer.print(order.getOrderId(), order.calculatePrice());
+        if (order != null){
+            printer.print(order.getOrderId(), order.calculatePrice());
+        }
     }
 }
