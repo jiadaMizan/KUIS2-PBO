@@ -1,5 +1,6 @@
 package id.ac.polinema.quiz2;
 
+import java.util.List;
 /**
  * Tempat bebas untuk mencoba programmu. Kelas ini TIDAK dinilai.
  *
@@ -15,6 +16,28 @@ package id.ac.polinema.quiz2;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Laundry Kiloan: tulis percobaanmu di sini.");
+        Customer customer1 = new Customer("C001", "Budi");
+        customer1.setName("   ");
+        System.out.println("Pelanggan: " + customer1.getCustomerId() + " - " + customer1.getName());
+
+        LaundryOrder reguler = new RegularLaundry("L1", customer1, 5);
+        LaundryOrder ekspres = new ExpressLaundry("L2", customer1, 5);
+
+        System.out.println("Reguler  : Rp " + reguler.calculatePrice());
+        System.out.println("Ekspres  : Rp " + ekspres.calculatePrice());
+        System.out.println("Antar-jemput ekspres: Rp " + ((Deliverable) ekspres).deliveryFee());
+
+        List<LaundryOrder> orders = List.of(reguler, ekspres);
+        System.out.println("Total harga    : Rp " + OrderCalculator.totalPrice(orders));
+        System.out.println("Total antar-jemput: Rp " + OrderCalculator.totalDelivery(orders));
+
+        System.out.println("Berat 25 valid? " + OrderCalculator.isAcceptable(new RegularLaundry("L3", customer1, 25)));
+
+        LaundryDesk desk = new LaundryDesk(new ConsoleReceiptPrinter());
+        desk.add(reguler);
+        desk.add(ekspres);
+        System.out.println("Jumlah pesanan: " + desk.count());
+        desk.checkout("L1");
+        desk.checkout("L9");
     }
 }
