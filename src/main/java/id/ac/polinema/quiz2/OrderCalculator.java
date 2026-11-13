@@ -59,7 +59,7 @@ public class OrderCalculator {
      */
     public static void validate(LaundryOrder order) throws InvalidWeightException {
         double weightKg = order.getWeightKg();
-        if (weightKg <= MIN_WEIGHT_KG || weightKg >= MAX_WEIGHT_KG){
+        if (weightKg <= MIN_WEIGHT_KG || weightKg > MAX_WEIGHT_KG){
             throw new InvalidWeightException("Invalid weight: " + weightKg);
         }
     }
